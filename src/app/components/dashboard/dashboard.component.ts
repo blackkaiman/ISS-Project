@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.endpointsService.getTasks().subscribe((Task) => {
-			this.dataSource = Task.result;
+			Task.forEach(el=>this.dataSource.push(el));
 			this.isLoading = false;
 		});
 		this.currentUser=this.authService.currentUserValue;

@@ -7,7 +7,7 @@ namespace YonderfulApi.DTOs
     public class TaskPresenceDto
     {
         [Required]
-        public int CategoryId { get; set; }
+        public int TaskId { get; set; }
         [Required]
         public int UserId { get; set; }
         

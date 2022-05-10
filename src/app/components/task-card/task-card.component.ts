@@ -32,9 +32,6 @@ export class TaskCardComponent implements OnInit {
 
 	TaskCard: ITask = {
 		title: '',
-		defaultBackground: 'abc',
-		icon: 'gaaa',
-		hasEvents: true,
 	};
 
 	dataSource: UserDetails[] = [];
@@ -72,10 +69,6 @@ export class TaskCardComponent implements OnInit {
 					Validators.maxLength(24),
 				]
 			),
-			iconControl: new FormControl('abc', [
-			]),
-			backgroundControl: new FormControl('abc', [
-			]),
 		});
 	}
 
@@ -95,7 +88,7 @@ export class TaskCardComponent implements OnInit {
 	}
 	ngOnInit(): void {
 		this.initTaskForm();
-		this.urlID = parseInt(this.route.snapshot.paramMap.get('id'));
+		this.urlID = parseInt(this.route.snapshot.paramMap.get('Id'));
 
 		this.taskPresenceService.getPresenceForTask(this.urlID).subscribe(result=>{
 			this.assignedEmployees = result;
@@ -117,13 +110,8 @@ export class TaskCardComponent implements OnInit {
 			(result: ITask) => {
 				this.TaskCard.id = result.id;
 				this.TaskCard.title = result.title;
-				this.TaskCard.icon = result.icon;
-				this.TaskCard.defaultBackground = result.defaultBackground;
-				this.TaskCard.hasEvents = result.hasEvents;
 				this.TaskForm.patchValue({
 					['titleControl']: result.title,
-					['backgroundControl']: result.defaultBackground,
-					['iconControl']: result.icon,
 				});
 			},
 			(error) => {
@@ -204,11 +192,6 @@ export class TaskCardComponent implements OnInit {
 
 		this.TaskCard.title = this.TaskForm.get('titleControl')!
 			.value as string;
-		this.TaskCard.icon = this.TaskForm.get('iconControl')!
-			.value as string;
-		this.TaskCard.defaultBackground = this.TaskForm.get(
-			'backgroundControl'
-		)!.value as string;
 		if (!this.urlID) {
 			this.TaskService.addNewTask(this.TaskCard).subscribe({
 				next: (_: ITask) => {

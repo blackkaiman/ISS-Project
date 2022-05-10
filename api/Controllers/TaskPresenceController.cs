@@ -14,27 +14,29 @@ namespace YonderfulApi.Controllers
     public class TaskPresenceController: ControllerBase
     {
         private readonly ITaskPresenceService _TaskPresenceService;
-        private readonly ICategoryService _categoryService;
+        private readonly ITaskService _taskService;
         private readonly IMapper _mapper;
 
-        public TaskPresenceController(ITaskPresenceService TaskPresenceService, ICategoryService categoryService, IMapper mapper){
+		public ITaskService TaskService => _taskService;
+
+		public TaskPresenceController(ITaskPresenceService TaskPresenceService, ITaskService taskService, IMapper mapper){
             _TaskPresenceService = TaskPresenceService;
-            _categoryService = categoryService;
+            _taskService = taskService;
             _mapper = mapper;
         }
 
-        [HttpGet("{categoryId}, {userId}")]
-        public async Task<IActionResult> GetTaskPresence(int categoryId, int userId){
-            var TaskPresence = await _TaskPresenceService.GetTaskPresence(categoryId, userId);
+        [HttpGet("{TaskId}, {userId}")]
+        public async Task<IActionResult> GetTaskPresence(int TaskId, int userId){
+            var TaskPresence = await _TaskPresenceService.GetTaskPresence(TaskId, userId);
             if(TaskPresence == null){
                 return BadRequest("No attendace found");
             }
             return Ok(_mapper.Map<TaskPresenceDto>(TaskPresence));
         }
 
-        [HttpGet("[action]/{categoryId}")]
-        public async Task<IActionResult> GetParticipants(int categoryId){
-            var participants = await _TaskPresenceService.GetParticipantsForTask(categoryId);
+        [HttpGet("[action]/{TaskId}")]
+        public async Task<IActionResult> GetParticipants(int TaskId){
+            var participants = await _TaskPresenceService.GetParticipantsForTask(TaskId);
 			return Ok(_mapper.Map<IList<UserDetailsDto>>(participants));
         }
 
@@ -48,7 +50,7 @@ namespace YonderfulApi.Controllers
         public async Task<IActionResult> GetAllTaskPresence(){
             var TaskPresence = await _TaskPresenceService.GetAllTaskPresence();
             if(TaskPresence == null){
-                return BadRequest("No categorys for user found");
+                return BadRequest("No Tasks for user found");
             }
             return Ok(_mapper.Map<IList<TaskPresenceDto>>(TaskPresence));
         }
@@ -65,9 +67,9 @@ namespace YonderfulApi.Controllers
             return Ok(_mapper.Map<TaskPresenceDto>(newTaskPresence));
         }
 
-        [HttpDelete("{categoryId}, {userId}")]
-        public async Task<IActionResult> DeleteTaskPresence(int categoryId, int userId){
-            var deletedTaskPresence = await _TaskPresenceService.DeleteTaskPresence(categoryId, userId);
+        [HttpDelete("{TaskId}, {userId}")]
+        public async Task<IActionResult> DeleteTaskPresence(int TaskId, int userId){
+            var deletedTaskPresence = await _TaskPresenceService.DeleteTaskPresence(TaskId, userId);
 			return deletedTaskPresence ? Ok() : BadRequest();
         }
         
