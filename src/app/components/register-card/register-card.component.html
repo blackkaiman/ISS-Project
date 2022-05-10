@@ -1,0 +1,81 @@
+<div class="register-card-wrapper">
+
+  <mat-card class="register-card-container">
+
+    <mat-card-header class="register-card-header">
+      <mat-card-title class="register-card-title"> Yonderful Time</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="register-card-content">
+      <form class="register-form" [formGroup]="registerForm">
+
+        <div class="register-card-item">
+          <mat-icon class="register-item-icon" aria-hidden="false" aria-label="Person icon">person_outline</mat-icon>
+
+          <mat-form-field class="register-form-item" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" placeholder="Name" formControlName="registerNameControl">
+
+            <mat-error *ngIf="registerForm.get('registerNameControl')!.hasError('pattern') && 
+                                      !registerForm.get('registerNameControl')!.hasError('required')">
+              Leading spaces in the name are not allowed.
+            </mat-error>
+
+            <mat-error *ngIf="registerForm.get('registerNameControl')!.hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+
+          </mat-form-field>
+        </div>
+
+        <div class="register-card-item">
+          <mat-icon class="register-item-icon" aria-hidden="false" aria-label="Mail">mail</mat-icon>
+
+          <mat-form-field class="register-form-item" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="Email" formControlName="registerEmailControl">
+
+            <mat-error *ngIf="registerForm.get('registerEmailControl')!.hasError('pattern') && 
+                                      !registerForm.get('registerEmailControl')!.hasError('required')">
+              Please provide your <strong>firstname.lastname@tss-yonder.com</strong> mail account
+            </mat-error>
+
+            <mat-error *ngIf="registerForm.get('registerEmailControl')!.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+
+            <mat-hint>Register with your @tss-yonder.com mail account</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="register-card-item">
+          <mat-icon class="register-item-icon" aria-hidden="false" aria-label="Mail">key</mat-icon>
+
+          <mat-form-field class="register-form-item" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Password" formControlName="registerPasswordControl">
+
+            <mat-error *ngIf="registerForm.get('registerPasswordControl')!.hasError('minlength') && 
+                                    !registerForm.get('registerPasswordControl')!.hasError('required')">
+              Password should be <strong>at least</strong> 6 characters long.
+            </mat-error>
+
+            <mat-error *ngIf="registerForm.get('registerPasswordControl')!.hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+
+          </mat-form-field>
+        </div>
+
+      </form>
+
+      <div class="button-wrapper">
+        <button mat-raised-button class="register-button" label="Register" [disabled]="!isRegisterFormDone()"
+          (click)="onRegisterUser()">Register</button>
+      </div>
+    </mat-card-content>
+
+  </mat-card>
+
+  <a href="/login">Already have an account?</a>
+</div>

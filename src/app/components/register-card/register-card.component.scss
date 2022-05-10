@@ -1,0 +1,73 @@
+@import '../../variables.scss';
+@import '../../mixins.scss';
+
+.register-card-wrapper {
+    @include flex-container(column);
+    align-items: center;
+    height: 100%;
+}
+
+.register-card-container {
+    @include flex-container(column);
+    width: 500px;
+    padding: 50px;
+}
+
+.register-card-header {
+    @include flex-container(row);
+    color: $yonder-pink;
+    margin-bottom: 50px;
+}
+
+.register-card-content {
+    @include flex-container(column);
+}
+
+.register-card-item {
+    @include flex-container(row, none);
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.register-form {
+    width: 100%;
+}
+
+.register-form-item {
+    width: 100%;
+    margin-left: 20px;
+}
+
+.register-form-item:hover {
+    border-bottom-color: $yonder-pink;
+}
+
+.register-item-icon {
+    margin-bottom: 17px;
+    color: $yonder-blue;
+}
+
+a {
+    margin-top: 10px;
+    color: $link-clear-blue;
+    text-decoration: none;
+}
+
+a:hover {
+    color: $yonder-blue;
+}
+
+.button-wrapper {
+    @include flex-container(row, flex-end);
+}
+
+.register-button {
+    background-color: $yonder-blue;
+    color: $yonder-white;
+    width: 25%;
+}
+
+.register-button:enabled:hover {
+    background-color: $yonder-pink;
+    transition: background-color 100ms linear;
+}

@@ -1,0 +1,93 @@
+<div class="content-wrapper" *ngIf="!isLoading">
+	<div class="top-row">
+		<h1>Administrate tasks</h1>
+		<div class="action-container">
+			<button
+				mat-raised-button
+				class="main-button main-button-action"
+				(click)="navigatetoTaskNew()"
+			>
+				<mat-icon class="add-button-icon">add</mat-icon>
+				New
+			</button>
+			<button
+				mat-raised-button
+				class="main-button main-button-action"
+				(click)="onLogout()"
+			>
+				<mat-icon class="add-button-icon">close</mat-icon>
+				Log Out
+			</button>
+		</div>
+	</div>
+
+	<ng-container *ngIf="dataSource.length; else noDataBlock">
+		<div class="content-container">
+			<table
+				mat-table
+				[dataSource]="dataSource"
+				class="mat-elevation-z8 table-container"
+			>
+				<!-- TITLE COLUMN -->
+				<ng-container matColumnDef="Task Description">
+					<th
+						mat-header-cell
+						*matHeaderCellDef
+						class="table-header-text"
+					>
+						Description
+					</th>
+					<td
+						class="table-title-data"
+						mat-cell
+						*matCellDef="let element"
+					>
+						{{ element.title }}
+					</td>
+				</ng-container>
+
+				<!-- ACTIONS COLUMN -->
+				<ng-container matColumnDef="Actions" class="table-column-last">
+					<th
+						mat-header-cell
+						*matHeaderCellDef
+						class="table-header-text"
+					>
+						Actions
+					</th>
+					<td mat-cell *matCellDef="let element">
+						<button mat-button (click)="editTask(element.id)">
+							<mat-icon>edit</mat-icon>
+						</button>
+						<span
+							(click)="$event.stopPropagation()"
+							matTooltip="You cannot delete categories that have an associated event."
+							[matTooltipDisabled]="!element.hasEvents"
+						>
+							<button
+								mat-button
+								[disabled]="element.hasEvents"
+								(click)="deleteTask(element.id)"
+							>
+								<mat-icon>delete</mat-icon>
+							</button>
+						</span>
+					</td>
+				</ng-container>
+
+				<tr
+					mat-header-row
+					class="table-header"
+					*matHeaderRowDef="displayedColumns"
+				></tr>
+				<tr
+					mat-row
+					class="table-row"
+					*matRowDef="let row; columns: displayedColumns"
+					(click)="onTaskRowClick(row)"
+				></tr>
+			</table>
+		</div>
+	</ng-container>
+</div>
+<ng-template #noDataBlock>Sorry, there is nothing to show</ng-template>

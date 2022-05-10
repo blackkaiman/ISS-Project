@@ -1,0 +1,120 @@
+<div class="login-card-wrapper">
+	<mat-card class="login-card-container">
+		<mat-card-header class="login-card-header">
+			<mat-card-title class="login-card-title">
+				Login System</mat-card-title
+			>
+		</mat-card-header>
+
+		<mat-card-content class="login-card-content">
+			<form class="login-form" [formGroup]="loginForm">
+				<div class="login-card-item">
+					<mat-icon
+						class="login-item-icon"
+						aria-hidden="false"
+						aria-label="Mail"
+						>mail</mat-icon
+					>
+
+					<mat-form-field class="login-form-item" appearance="fill">
+						<mat-label>Email</mat-label>
+						<input
+							matInput
+							type="email"
+							placeholder="Email"
+							formControlName="loginEmailControl"
+						/>
+
+						<mat-error
+							*ngIf="
+								loginForm
+									.get('loginEmailControl')!
+									.hasError('pattern') &&
+								!loginForm
+									.get('loginEmailControl')!
+									.hasError('required')
+							"
+						>
+							Please provide your
+							<strong>firstname.lastname@tss-yonder.com</strong>
+							mail account
+						</mat-error>
+
+						<mat-error
+							*ngIf="
+								loginForm
+									.get('loginEmailControl')!
+									.hasError('required')
+							"
+						>
+							Email is <strong>required</strong>
+						</mat-error>
+
+						<mat-hint
+							>Login with your @tss-yonder.com mail
+							account</mat-hint
+						>
+					</mat-form-field>
+				</div>
+
+				<div class="login-card-item">
+					<mat-icon
+						class="login-item-icon"
+						aria-hidden="false"
+						aria-label="Mail"
+						>key</mat-icon
+					>
+
+					<mat-form-field class="login-form-item" appearance="fill">
+						<mat-label>Password</mat-label>
+						<input
+							matInput
+							type="password"
+							placeholder="Password"
+							formControlName="loginPasswordControl"
+							(keydown.enter)="onLoginUser()"
+						/>
+
+						<mat-error
+							*ngIf="
+								loginForm
+									.get('loginPasswordControl')!
+									.hasError('minlength') &&
+								!loginForm
+									.get('loginPasswordControl')!
+									.hasError('required')
+							"
+						>
+							<strong>Invalid</strong> password.
+						</mat-error>
+
+						<mat-error
+							*ngIf="
+								loginForm
+									.get('loginPasswordControl')!
+									.hasError('required')
+							"
+						>
+							Password is <strong>required</strong>
+						</mat-error>
+					</mat-form-field>
+				</div>
+			</form>
+
+			<div class="button-wrapper">
+				<button
+					mat-raised-button
+					class="login-button"
+					label="Login"
+					type="submit"
+					[disabled]="!isLoginFormDone()"
+					(click)="onLoginUser()"
+				>
+					Login
+				</button>
+			</div>
+		</mat-card-content>
+	</mat-card>
+
+	<a href="/register">Don't have an account?</a>
+</div>

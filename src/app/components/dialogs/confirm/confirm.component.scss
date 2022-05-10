@@ -1,0 +1,10 @@
+@use "../../../themes/colors.scss";
+
+.confirm-button{
+    background-color:colors.$yonder-blue;
+    color:white;
+}
+
+.cancel-button{
+    color:colors.$yonder-blue;
+}

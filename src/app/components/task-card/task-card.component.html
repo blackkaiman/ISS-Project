@@ -1,0 +1,146 @@
+<div class="content-wrapper content-center">
+	<div class="content-container no-padding">
+		<div class="content-header">
+			<div class="header">
+				<h1 class="no-padding">Manage Task</h1>
+			</div>
+			<div class="action-container">
+				<button
+					mat-raised-button
+					type="button"
+					class="icon-button icon-button-cancel"
+					[disabled]="TaskCard.hasEvents"
+					(click)="onDelete()"
+				>
+					<mat-icon>delete</mat-icon>
+					Delete
+				</button>
+				<button
+					mat-raised-button
+					type="submit"
+					class="icon-button icon-button-action"
+					(click)="onSubmit()"
+					[disabled]="!TaskForm.valid"
+				>
+					<mat-icon>save</mat-icon>
+					Save
+				</button>
+			</div>
+		</div>
+
+		<div class="Task-form-shadow">
+			<form [formGroup]="TaskForm" (ngSubmit)="onSubmit()">
+				<div class="title-action-container">
+					<div class="title-input-container">
+						<label class="Task-title"> Task Description </label>
+						<mat-form-field appearance="outline">
+							<input
+								matInput
+								type="text"
+								placeholder="Task title"
+								formControlName="titleControl"
+								class="title-input"
+							/>
+							<mat-error
+								*ngIf="
+									TaskForm.get('titleControl')!.hasError(
+										'required'
+									) && TaskForm.touched
+								"
+								>Title is required.</mat-error
+							>
+							<mat-error
+								*ngIf="
+									TaskForm.get('titleControl')!.hasError(
+										'maxlength'
+									) && TaskForm.touched
+								"
+								>Title cannot be longer than 24
+								characters.</mat-error
+							>
+							<mat-error
+								*ngIf="
+									TaskForm.get('titleControl')!.hasError(
+										'pattern'
+									) && TaskForm.touched
+								"
+								>Title can only contain letters.</mat-error
+							>
+						</mat-form-field>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="content-wrapper">
+	<div class="content-wrapper">
+		<ng-container *ngIf="dataSource.length; else noDataBlock">
+			<div class="content-container">
+				<table
+					mat-table
+					[dataSource]="dataSource"
+					class="mat-elevation-z8 table-container"
+				>
+					<!-- TITLE COLUMN -->
+					<ng-container matColumnDef="Name">
+						<th
+							mat-header-cell
+							*matHeaderCellDef
+							class="table-header-text"
+						>
+							Description
+						</th>
+						<td
+							class="table-title-data"
+							mat-cell
+							*matCellDef="let element"
+						>
+							{{ element.name }}
+						</td>
+					</ng-container>
+					<ng-container
+						matColumnDef="Actions"
+						class="table-column-last"
+					>
+						<th
+							mat-header-cell
+							*matHeaderCellDef
+							class="table-header-text"
+						>
+							Add/Remove from task
+						</th>
+						<td mat-cell *matCellDef="let element">
+							<button
+								mat-button
+								(click)="addToTask(element.id)"
+								[disabled]="isInAssigned(element.id)"
+							>
+								<mat-icon>add</mat-icon>
+							</button>
+
+							<button
+								mat-button
+								(click)="removeFromTask(element.id)"
+								[disabled]="!isInAssigned(element.id)"
+							>
+								<mat-icon>delete</mat-icon>
+							</button>
+						</td>
+					</ng-container>
+					<tr
+						mat-header-row
+						class="table-header"
+						*matHeaderRowDef="displayedColumns"
+					></tr>
+					<tr
+						mat-row
+						class="table-row"
+						*matRowDef="let row; columns: displayedColumns"
+					></tr>
+				</table>
+			</div>
+		</ng-container>
+	</div>
+	<ng-template #noDataBlock>Sorry, there is nothing to show</ng-template>
+</div>

@@ -1,0 +1,17 @@
+@use "../../variables.scss";
+@import '../../mixins.scss';
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-button{
+    margin-left:10px;
+    margin-bottom: 10px;
+   border: 2px solid gray;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}

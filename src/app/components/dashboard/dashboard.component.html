@@ -1,0 +1,74 @@
+<div class="content-wrapper" *ngIf="!isLoading">
+	<div class="login-container">
+		<mat-form-field class="example-full-width" appearance="fill">
+			<mat-label>Log in time</mat-label>
+			<input
+				matInput
+				placeholder="00:00"
+				[(ngModel)]="loginTime"
+				type="time"
+			/>
+		</mat-form-field>
+		<button
+			type="button"
+			mat-button
+			class="login-button"
+			(click)="onLogin()"
+			[disabled]="isLogged"
+			[disabled]="!loginTime"
+		>
+			Log In.
+		</button>
+		<button
+			type="button"
+			mat-button
+			class="login-button"
+			(click)="onLogout()"
+			[disabled]="!loginTime"
+		>
+			Log out.
+		</button>
+	</div>
+
+	<div class="content-wrapper" *ngIf="!isLoading">
+		<ng-container *ngIf="dataSource.length; else noDataBlock">
+			<div class="content-container">
+				<table
+					mat-table
+					[dataSource]="dataSource"
+					class="mat-elevation-z8 table-container"
+				>
+					<!-- TITLE COLUMN -->
+					<ng-container matColumnDef="Task Description">
+						<th
+							mat-header-cell
+							*matHeaderCellDef
+							class="table-header-text"
+						>
+							Description
+						</th>
+						<td
+							class="table-title-data"
+							mat-cell
+							*matCellDef="let element"
+						>
+							{{ element.title }}
+						</td>
+					</ng-container>
+
+					<tr
+						mat-header-row
+						class="table-header"
+						*matHeaderRowDef="displayedColumns"
+					></tr>
+					<tr
+						mat-row
+						class="table-row"
+						*matRowDef="let row; columns: displayedColumns"
+					></tr>
+				</table>
+			</div>
+		</ng-container>
+	</div>
+	<ng-template #noDataBlock>Sorry, there is nothing to show</ng-template>
+</div>

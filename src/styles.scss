@@ -1,0 +1,114 @@
+@import "./app/variables.scss";
+@import "./app/mixins.scss";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h1 {
+  color: $yonder-blue;
+  font-weight: 500;
+}
+
+label {
+  margin-left: 5px;
+  margin-bottom: 5px;
+  color: $yonder-blue;
+  font-weight: 500;
+}
+
+.icon-button {
+  color: $yonder-pink;
+}
+
+// FOR CENTERING CONTAINER
+.content-wrapper {
+    @include flex-container(column);
+    padding: 40px;
+}
+
+.content-container {
+    padding: 25px 100px 25px 100px;
+}
+
+
+// TABLE STYLES
+.table-container {
+    width: 100%;
+}
+
+.table-row:hover {
+    cursor: pointer;
+}
+
+.table-icon {
+    object-fit: cover;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+}
+
+.table-row:hover .table-title-data {
+    color: $yonder-blue;
+}
+.mat-table th.mat-header-cell{
+    color: $yonder-blue;
+    font-size: larger;
+}
+
+// MAIN BUTTONS STYLES
+.main-button {
+	@include flex-container(row);
+	height: auto;
+	width: 120px;
+	border-radius: 20px;
+
+	mat-icon {
+		font-size: 20px;
+	}
+}
+
+.button-label {
+	@include flex-container(row, space-between);
+	align-items: center;
+}
+
+.main-button-action {
+	color: $yonder-white;
+	background-color: $yonder-pink;
+}
+
+.main-button-cancel {
+  color: $yonder-pink;
+	border: 1px solid $yonder-pink;
+	margin-left: 20px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $yonder-light-gray; 
+  border-radius: 6px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background: $yonder-pink; 
+}
+
+/* Handle hover */
+::-webkit-scrollbar-thumb:hover {
+    border-radius: 6px;
+    background: $yonder-pink-hover;  
+}

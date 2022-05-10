@@ -1,0 +1,79 @@
+@import '../../variables.scss';
+
+@mixin flex-container($flex-direction-value, $justify-content-value: center) {
+    display: flex;
+    flex-direction: $flex-direction-value;
+    justify-content: $justify-content-value;
+}
+
+.login-card-wrapper {
+    @include flex-container(column);
+    align-items: center;
+    height: 100%;
+}
+
+.login-card-container {
+    @include flex-container(column);
+    width: 500px;
+    padding: 50px;
+}
+
+.login-card-header {
+    @include flex-container(row);
+    color: $yonder-pink;
+    margin-bottom: 50px;
+}
+
+.login-card-content {
+    @include flex-container(column);
+}
+
+.login-card-item {
+    @include flex-container(row, none);
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.login-form-item {
+    width: 100%;
+    margin-left: 20px;
+}
+
+.login-form-item:hover {
+    border-bottom-color: $yonder-pink;
+}
+
+.login-item-icon {
+    margin-bottom: 17px;
+    color: $yonder-blue;
+}
+
+a {
+    margin-top: 10px;
+    color: $link-clear-blue;
+    text-decoration: none;
+}
+
+a:hover {
+    color: $yonder-blue;
+}
+
+.button-wrapper {
+    @include flex-container(row, flex-end);
+}
+
+.login-button {
+    background-color: $yonder-blue;
+    color: white;
+    width: 25%;
+}
+
+.login-button:enabled:hover {
+    background-color: $yonder-pink;
+    transition: background-color 100ms linear;
+}
+

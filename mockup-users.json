@@ -1,0 +1,92 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John",
+      "email": "john.test@tss-yonder.com",
+      "password": "passwd1"
+    },
+    {
+      "id": 2,
+      "name": "Paul",
+      "email": "paul.test@tss-yonder.com",
+      "password": "passwd2"
+    },
+    {
+      "id": 3,
+      "name": "Marry",
+      "email": "marry.test@tss-yonder.com",
+      "password": "passwd3"
+    }
+  ],
+  "usersDetails": [
+    {
+      "id": 1,
+      "name": "John",
+      "email": "john.test@tss-yonder.com",
+      "password": "passwd1",
+      "role": 0,
+      "position": "employee",
+      "phoneNo": "07001"
+      
+    }
+  ],
+  "categoriesResponse": 
+    {
+      "result": [
+          {
+            "id": 1,
+            "title": "Hiking",
+            "icon": "icon1",
+            "defaultBackground": "back1"
+          },
+          {
+            "id": 2,
+            "title": "Running",
+            "icon": "icon2",
+            "defaultBackground": "back2"
+          }
+      ] 
+    },
+  "categories": [
+    {
+      "id": 1,
+      "title": "Hiking",
+      "icon": "icon1",
+      "defaultBackground": "back1"
+    },
+    {
+      "id": 2,
+      "title": "Running",
+      "icon": "icon2",
+      "defaultBackground": "back2"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "categoryId": 1,
+      "hostId": 1,
+      "title": "Hiking near Cluj-Napoca",
+      "startDate": "October 13, 2022 11:00",
+      "endDate": "October 13, 2022 15:00",
+      "minimumParticipants": 5,
+      "maximumParticipants": 15,
+      "autocancel": true,
+      "autojoin": false,
+      "joinDeadline": "October 12, 2022 11:00",
+      "fee": 0,
+      "description": "Introduction to hiking and outdoors activities",
+      "eventLocation": {
+        "location": "hiking place",
+        "locationDetails": "somewhere outside but near the city",
+        "city": "Cluj Napoca",
+        "state": "Cluj"
+      },
+      "contactEmail": "johnhome@gmail.com",
+      "contactMobileNumber": "07001",
+      "tags": "hiking*outdoors*fun*sunnyday",
+      "backgroundImage": "back1"
+    }
+  ]
+}

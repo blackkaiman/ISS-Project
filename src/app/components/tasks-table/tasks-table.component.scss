@@ -1,0 +1,49 @@
+@import '../../variables.scss';
+@import '../../mixins.scss';
+
+.content-wrapper {
+    @include flex-container(column, flex-start);
+}
+
+.top-row {
+    @include flex-container(row, flex-start);
+    justify-content: space-between;
+    padding-right: 100px;
+
+    h1 {
+        margin-bottom: 0px;
+    }
+}
+
+.action-container {
+    @include flex-container(row, flex-end);
+	align-items: center;
+}
+
+.main-button {
+	border-radius: 20px;
+}
+
+h1{
+    padding-left:100px;
+}
+
+.mat-column-Actions {
+    text-align: end;
+    margin-right: 0px;
+    color: $yonder-pink;
+}
+
+.mat-column-Icon {
+    color: $yonder-blue;
+    padding-left: 56px;
+}
+
+.mat-header-cell:first-of-type {
+    padding-left: 30px;
+}
+
+.mat-header-cell:last-of-type {
+    color: $yonder-blue;
+    padding-right: 46px;
+}
